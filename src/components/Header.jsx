@@ -3,7 +3,7 @@ import { ObjContext } from "../contexts/ObjectsContext";
 
 const Header = () => {
 
-    const {words, setPage, rand8} = useContext(ObjContext);
+    const {words, page, setPage, setRand8ChangedFlag, rand8ChangedFlag, rand8} = useContext(ObjContext);
 
     const [name, setName] = useState(null);
 
@@ -13,6 +13,11 @@ const Header = () => {
 
     const chooseName = (e) => {
         setName(e.target.innerText)
+    }
+
+    const changeCardPage = (item) => {
+        rand8.current=Math.floor(Math.random()*8);
+        item===page?setRand8ChangedFlag(!rand8ChangedFlag):setPage(item);
     }
 
     return (
@@ -30,8 +35,7 @@ const Header = () => {
                 </div>
            </section>
            <section>
-                {Object.keys(words).map((item,i)=><div key={i} onClick={()=>{setPage(item); 
-                                                                        rand8.current=Math.floor(Math.random()*8)}}>{item}</div>)}
+                {Object.keys(words).map((item,i)=><div key={i} onClick={()=>changeCardPage(item)}>{item}</div>)}
                 <form><button><span>←</span><span>→</span></button></form>
            </section>
        </header>

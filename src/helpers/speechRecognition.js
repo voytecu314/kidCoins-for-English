@@ -1,5 +1,5 @@
 const recogniseSpeech = (word) => {
-    
+        console.log(word);
         // get output div reference
         //var output = document.getElementById("output");
         // get action element reference
