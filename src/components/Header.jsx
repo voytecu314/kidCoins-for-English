@@ -3,7 +3,7 @@ import { ObjContext } from "../contexts/ObjectsContext";
 
 const Header = () => {
 
-    const {words, setPage} = useContext(ObjContext);
+    const {words, setPage, rand8} = useContext(ObjContext);
 
     const [name, setName] = useState(null);
 
@@ -30,7 +30,8 @@ const Header = () => {
                 </div>
            </section>
            <section>
-                {Object.keys(words).map((item,i)=><div key={i} onClick={()=>setPage(item)}>{item}</div>)}
+                {Object.keys(words).map((item,i)=><div key={i} onClick={()=>{setPage(item); 
+                                                                        rand8.current=Math.floor(Math.random()*8)}}>{item}</div>)}
                 <form><button><span>←</span><span>→</span></button></form>
            </section>
        </header>
