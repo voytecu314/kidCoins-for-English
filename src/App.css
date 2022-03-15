@@ -96,9 +96,13 @@ main {
     font-size: 1.8rem;
 }
 
-main > img {
-    max-width: 80%;
-    max-height: 400px;
+main > button {
+    padding: 2%;
+}
+
+main > button > img {
+    max-width: 100%;
+    max-height: 350px;
 }
 
 footer {

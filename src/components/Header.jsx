@@ -3,13 +3,7 @@ import { ObjContext } from "../contexts/ObjectsContext";
 
 const Header = () => {
 
-    const {words, page, setPage, setRand8ChangedFlag, rand8ChangedFlag, rand8} = useContext(ObjContext);
-
-    const [name, setName] = useState(null);
-
-    useEffect(()=>{
-        !localStorage.hasOwnProperty('learnENG') && localStorage.setItem('learnENG', JSON.stringify({Emi: 0,Lili:0}))
-    },[]);
+    const {words,name, setName, page, setPage, setRand8ChangedFlag, rand8ChangedFlag, rand8} = useContext(ObjContext);
 
     const chooseName = (e) => {
         setName(e.target.innerText)
@@ -30,7 +24,10 @@ const Header = () => {
                 <div style={{display: name?'block':'none'}} >
                     <h1>
                         <p>{name}</p>
-                        <p><span>Points:</span><span>{localStorage.hasOwnProperty('learnENG') && JSON.parse(localStorage.getItem("learnENG"))[name]}</span></p>
+                        {/* <p>
+                            <span>Points:</span>
+                            <span>{localStorage.hasOwnProperty('learnENG') && JSON.parse(localStorage.getItem("learnENG"))[name]}</span>
+                        </p> */}
                     </h1>
                 </div>
            </section>
