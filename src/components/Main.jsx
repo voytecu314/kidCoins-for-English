@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import { ObjContext } from "../contexts/ObjectsContext";
 import recogniseSpeech from "../helpers/speechRecognition";
 
-const Card = () => {
+const Main = () => {
 
-    const {words, page, rand8ChangedFlag, rand8, name, highScores} = useContext(ObjContext);
+    const {words, page, rand8ChangedFlag, rand8, name, highScores, setHighScores} = useContext(ObjContext);
     const [img, setImg] = useState(words[page][0]);
     const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -16,17 +16,20 @@ const Card = () => {
         .catch(error=>console.log('catched ERROR: ',error));  
     },[page, rand8ChangedFlag]);
 
-    //useEffect(()=>console.log(score),[score]);
-
     return (
-       <main> {(<>
+       <main> 
+           <section></section>
+           <section>
                 <p>{words[page][rand8.current].toUpperCase()}</p>
                 <button>
-                <img src={img} alt={words[page][rand8.current]} onClick={()=>{recogniseSpeech(words[page][rand8.current], name, highScores)}}/>
+                <img src={img} alt={words[page][rand8.current]} onClick={()=>{name?
+                                        recogniseSpeech(words[page][rand8.current], highScores, setHighScores):
+                                        alert('Please choose player')}}/>
                 </button>
-                </>)}
+            </section>
+            <section></section>    
         </main>
         )
 }
 
-export default Card;
+export default Main;

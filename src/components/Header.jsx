@@ -3,16 +3,26 @@ import { ObjContext } from "../contexts/ObjectsContext";
 
 const Header = () => {
 
-    const {words,name, setName, page, setPage, setRand8ChangedFlag, rand8ChangedFlag, rand8} = useContext(ObjContext);
+    const {storagePoints, 
+            words,name, 
+            setName, page, 
+            setPage, 
+            setRand8ChangedFlag,
+            setHighScores, 
+            rand8ChangedFlag, rand8} = useContext(ObjContext);
 
     const chooseName = (e) => {
-        setName(e.target.innerText)
+        setName(e.target.innerText);
     }
 
     const changeCardPage = (item) => {
         rand8.current=Math.floor(Math.random()*8);
         item===page?setRand8ChangedFlag(!rand8ChangedFlag):setPage(item);
     }
+
+    useEffect(()=>{
+        setHighScores(storagePoints[name]);
+    },[name]);
 
     return (
        <header>
@@ -24,16 +34,12 @@ const Header = () => {
                 <div style={{display: name?'block':'none'}} >
                     <h1>
                         <p>{name}</p>
-                        {/* <p>
-                            <span>Points:</span>
-                            <span>{localStorage.hasOwnProperty('learnENG') && JSON.parse(localStorage.getItem("learnENG"))[name]}</span>
-                        </p> */}
                     </h1>
+                    <form><button><span>←</span><span>→</span></button></form>
                 </div>
            </section>
            <section>
                 {Object.keys(words).map((item,i)=><div key={i} onClick={()=>changeCardPage(item)}>{item}</div>)}
-                <form><button><span>←</span><span>→</span></button></form>
            </section>
        </header>
     )

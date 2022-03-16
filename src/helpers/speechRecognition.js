@@ -1,4 +1,4 @@
-const recogniseSpeech = (word, name, highScores) => {
+const recogniseSpeech = (word, highScores, setHighScores) => {
         // new speech recognition object
         var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         var recognition = new SpeechRecognition();
@@ -19,8 +19,8 @@ const recogniseSpeech = (word, name, highScores) => {
             if(transcript.toLowerCase()==word){
                     console.log('you said ', transcript,'word was ', word, 'GOOD!');
                     console.log('confidence',confidence);
-                    highScores.current = {...highScores.current, [name]:highScores['current'][name]+1};
-                    localStorage.setItem('learnENG', JSON.stringify(highScores.current));
+                    setHighScores(highScores + 1);
+                    //localStorage.setItem('learnENG', JSON.stringify(highScores.current));
                     
             } else {
                 console.log('you said ', transcript,'word was ', word, 'TOO BAD!');
