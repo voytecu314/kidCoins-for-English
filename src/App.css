@@ -125,7 +125,6 @@ main > section:nth-child(2) > button > img {
 main > section:nth-child(3) {
     background-image: linear-gradient( white,red);
     width: 10%;
-    height: 88%;
     align-self: flex-end;
 }
 

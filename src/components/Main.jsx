@@ -27,7 +27,7 @@ const Main = () => {
                                         alert('Please choose player')}}/>
                 </button>
             </section>
-            <section></section>    
+            <section style={ {height: `${highScores}%`} }></section>    
         </main>
         )
 }
